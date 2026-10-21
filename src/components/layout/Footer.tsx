@@ -18,7 +18,7 @@ export default function Footer() {
             </span>
             <span className="text-surface/40">/</span>
             <span className="font-mono text-xs tracking-widest text-surface/70 uppercase">
-              SWISS PORTFOLIO
+              Thank you!
             </span>
           </div>
 
