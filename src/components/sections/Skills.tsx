@@ -252,11 +252,11 @@ export default function Skills() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full mt-28 pt-14 border-t border-borderLine"
+        className="w-full mt-16 sm:mt-28 pt-8 sm:pt-14 border-t border-borderLine"
       >
-        <div className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-24 mb-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-14 lg:px-24 mb-6">
           <span className="font-mono text-[11px] uppercase tracking-widest text-ink-muted">
-            TECH STACK & TOOLS TICKER /
+            TOOLS /
           </span>
         </div>
 

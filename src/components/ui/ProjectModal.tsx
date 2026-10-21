@@ -258,17 +258,20 @@ export default function ProjectModal({
               </div>
             </div>
 
-            {/* Action Links */}
+            {/* Action Links & Close Window:
+                - Mobile: Stacked full-width buttons of equal size, with Close Window having stroke/no fill.
+                - Desktop: Original layout with action links on the left and solid Close Window button on the right.
+            */}
             <div className="pt-4 sm:pt-6 border-t border-borderLine flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                 {project.projectUrl && project.projectUrl !== "#" && project.projectUrl !== project.figmaUrl && (
                   <a
                     href={project.projectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-ink/85 transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-ink/85 transition-colors"
                   >
-                    <ExternalLink size={13} />
+                    <ExternalLink size={14} />
                     <span>View Website ↗</span>
                   </a>
                 )}
@@ -277,7 +280,7 @@ export default function ProjectModal({
                     href={project.figmaUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-ink/85 transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-ink/85 transition-colors"
                   >
                     <FigmaIcon />
                     <span>Open Figma ↗</span>
@@ -288,7 +291,7 @@ export default function ProjectModal({
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 border border-ink text-ink font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-canvas transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-4 py-2.5 sm:py-2.5 border border-ink text-ink font-mono text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-canvas transition-colors"
                   >
                     <GithubIcon />
                     <span>GitHub ↗</span>
@@ -296,9 +299,10 @@ export default function ProjectModal({
                 )}
               </div>
 
+              {/* Close Window: Solid fill with white text */}
               <button
                 onClick={onClose}
-                className="px-4 py-2 sm:px-6 sm:py-2.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-ink/80 transition-colors"
+                className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-2.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-ink/85 transition-colors"
               >
                 Close Window
               </button>
