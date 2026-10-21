@@ -7,8 +7,8 @@ export default function Experience() {
   const exp = EXPERIENCE_DATA[0];
 
   return (
-    <section id="experience" className="relative w-full py-28 lg:py-44 px-8 sm:px-14 lg:px-24 bg-surface border-b border-borderLine">
-      <div className="max-w-7xl mx-auto space-y-20">
+    <section id="experience" className="relative w-full py-16 sm:py-28 lg:py-40 px-4 sm:px-14 lg:px-24 bg-surface border-b border-borderLine">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-20">
         {/* Section Header with Minimal Swiss Motion */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -32,16 +32,16 @@ export default function Experience() {
         </motion.div>
 
         {/* Two-Column Swiss Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-20 items-start">
           {/* Left Column: Organization & Program Anchor Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="lg:col-span-5 space-y-8"
+            className="lg:col-span-5 space-y-6 sm:space-y-8"
           >
-            <div className="p-8 sm:p-10 bg-canvas border border-borderLine space-y-8 shadow-sm">
+            <div className="p-5 sm:p-8 md:p-10 bg-canvas border border-borderLine space-y-6 sm:space-y-8 shadow-sm">
               {/* Logo & Badge Row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 bg-[#B50014] p-2 flex items-center justify-center shrink-0 border border-borderLine/30 shadow-sm">
@@ -127,7 +127,7 @@ export default function Experience() {
             </div>
 
             {/* Structured Module Cards */}
-            <div className="space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               {exp.keyLearnings.map((item, idx) => (
                 <motion.div
                   key={item.title}
@@ -135,7 +135,7 @@ export default function Experience() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false, amount: 0.25 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: idx * 0.1 }}
-                  className="p-7 sm:p-8 bg-canvas border border-borderLine hover:border-ink transition-colors group space-y-3 shadow-sm"
+                  className="p-4 sm:p-7 md:p-8 bg-canvas border border-borderLine hover:border-ink transition-colors group space-y-2.5 sm:space-y-3 shadow-sm"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -146,12 +146,12 @@ export default function Experience() {
                         MODULE 0{idx + 1}
                       </span>
                     </div>
-                    <span className="font-mono text-[11px] uppercase tracking-wider text-sage-dark font-semibold">
+                    <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wider text-sage-dark font-semibold">
                       VERIFIED CURRICULUM
                     </span>
                   </div>
 
-                  <h4 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-ink group-hover:text-ink">
+                  <h4 className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-tight text-ink group-hover:text-ink">
                     {item.title}
                   </h4>
 
@@ -168,7 +168,7 @@ export default function Experience() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: false, amount: 0.3 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="p-6 bg-surface border border-borderLine flex items-start gap-4"
+              className="p-4 sm:p-6 bg-surface border border-borderLine flex items-start gap-3 sm:gap-4"
             >
               <Cpu size={20} className="text-ink shrink-0 mt-0.5" />
               <div className="space-y-1">

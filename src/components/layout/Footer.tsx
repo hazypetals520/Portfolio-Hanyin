@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-ink text-surface py-16 lg:py-24 px-8 sm:px-14 lg:px-24 border-t border-ink">
+    <footer className="w-full bg-ink text-surface py-12 sm:py-16 lg:py-24 px-4 sm:px-14 lg:px-24 border-t border-ink">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
         {/* Brand identity */}
         <div className="space-y-2">

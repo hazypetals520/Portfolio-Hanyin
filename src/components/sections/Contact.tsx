@@ -35,8 +35,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative w-full py-28 lg:py-44 px-8 sm:px-14 lg:px-24 bg-surface border-b border-borderLine">
-      <div className="max-w-7xl mx-auto space-y-20">
+    <section id="contact" className="relative w-full py-16 sm:py-28 lg:py-40 px-4 sm:px-14 lg:px-24 bg-surface border-b border-borderLine">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-20">
         {/* Section Header with Motion */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -59,17 +59,17 @@ export default function Contact() {
         </motion.div>
 
         {/* Contact Content Grid with Generous Gaps and Motion */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 xl:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 xl:gap-24">
           {/* Main Direct Channels (Left) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="lg:col-span-7 space-y-10"
+            className="lg:col-span-7 space-y-6 sm:space-y-10"
           >
             {/* Primary Action Mail Card */}
-            <div className="p-8 sm:p-12 bg-canvas border border-borderLine space-y-8 shadow-sm">
+            <div className="p-4 sm:p-8 md:p-12 bg-canvas border border-borderLine space-y-6 sm:space-y-8 shadow-sm">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs uppercase tracking-widest text-ink-muted flex items-center gap-2">
                   <Mail size={16} />
@@ -85,34 +85,34 @@ export default function Contact() {
                 >
                   {PERSONAL_INFO.email}
                 </a>
-                <p className="text-sm text-ink-secondary font-light">
+                <p className="text-xs sm:text-sm text-ink-secondary font-light">
                   Open for internship, collaboration, UI/UX discussions, or general inquiries.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-borderLine">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-4 border-t border-borderLine">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="px-7 py-3.5 bg-ink text-surface font-mono text-xs uppercase tracking-widest hover:bg-ink/90 active:scale-95 transition-all flex items-center gap-2"
+                  className="px-4 py-2.5 sm:px-7 sm:py-3.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-widest hover:bg-ink/90 active:scale-95 transition-all flex items-center gap-2"
                 >
-                  <Mail size={16} />
+                  <Mail size={15} />
                   <span>GET IN TOUCH</span>
-                  <ArrowUpRight size={14} />
+                  <ArrowUpRight size={13} />
                 </a>
 
                 <button
                   onClick={copyEmail}
-                  className="px-6 py-3.5 border border-borderLine bg-surface text-ink font-mono text-xs uppercase tracking-widest hover:border-ink transition-all flex items-center gap-2"
+                  className="px-4 py-2.5 sm:px-6 sm:py-3.5 border border-borderLine bg-surface text-ink font-mono text-[11px] sm:text-xs uppercase tracking-widest hover:border-ink transition-all flex items-center gap-2"
                 >
                   {copied ? <Check size={14} className="text-sage-dark" /> : <Copy size={14} />}
-                  <span>{copied ? 'COPIED TO CLIPBOARD' : 'COPY EMAIL'}</span>
+                  <span>{copied ? 'COPIED' : 'COPY EMAIL'}</span>
                 </button>
               </div>
             </div>
 
             {/* Contact Person & Phone */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="p-7 border border-borderLine bg-canvas space-y-2 shadow-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="p-5 sm:p-7 border border-borderLine bg-canvas space-y-1.5 sm:space-y-2 shadow-sm">
                 <span className="font-mono text-xs uppercase tracking-widest text-ink-muted flex items-center gap-2">
                   <User size={16} />
                   CONTACT PERSON
@@ -125,7 +125,7 @@ export default function Contact() {
                 </span>
               </div>
 
-              <div className="p-7 border border-borderLine bg-canvas space-y-2 shadow-sm">
+              <div className="p-5 sm:p-7 border border-borderLine bg-canvas space-y-1.5 sm:space-y-2 shadow-sm">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs uppercase tracking-widest text-ink-muted flex items-center gap-2">
                     <Phone size={16} />

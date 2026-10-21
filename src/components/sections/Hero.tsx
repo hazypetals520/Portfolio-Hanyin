@@ -15,16 +15,16 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex flex-col justify-between overflow-x-clip px-5 sm:px-14 lg:px-24 pt-12 pb-12 sm:pb-20 bg-canvas border-b border-borderLine"
+      className="relative w-full min-h-screen flex flex-col justify-between overflow-x-clip px-4 sm:px-14 lg:px-24 pt-8 sm:pt-12 pb-8 sm:pb-20 bg-canvas border-b border-borderLine"
     >
-      {/* 3D Interactive Lanyard — Right side, lower and shifted a bit to the left */}
+      {/* 3D Interactive Lanyard — Aligned with main title, strap extends under navbar */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        className="absolute -top-4 sm:-top-6 md:-top-8 right-8 sm:right-28 md:right-40 lg:right-60 pointer-events-auto z-30"
+        className="absolute top-36 sm:top-24 md:-top-20 lg:-top-16 xl:-top-14 right-2 sm:right-12 md:right-32 lg:right-48 xl:right-60 pointer-events-auto z-30"
       >
-        <div className="w-[140px] h-[280px] sm:w-[220px] sm:h-[480px] md:w-[250px] md:h-[530px] max-w-full drop-shadow-sm pointer-events-auto">
+        <div className="w-[110px] h-[235px] sm:w-[175px] sm:h-[380px] md:w-[250px] md:h-[650px] max-w-full drop-shadow-sm pointer-events-auto">
           <Lanyard
             frontImage="/images/hanin-portrait.png"
             orientation="portrait"
@@ -33,7 +33,7 @@ export default function Hero() {
             metal="silver"
             finish="matte"
             size={0.40}
-            strapLength={0.45}
+            strapLength={0.56}
             strapWidth={0.65}
             gravity={0.8}
             damping={0.65}
@@ -83,7 +83,7 @@ export default function Hero() {
       >
         <div className="max-w-3xl lg:max-w-4xl text-left leading-none select-text pointer-events-auto">
           {/* Main Title: HANIN'S */}
-          <h1 className="text-[clamp(2.8rem,10.5vw,9rem)] font-black uppercase tracking-tighter text-ink leading-[0.88] opacity-95 transition-all select-text pointer-events-auto cursor-pointer">
+          <h1 className="text-[clamp(2.4rem,9.5vw,9rem)] font-black uppercase tracking-tighter text-ink leading-[0.88] opacity-95 transition-all select-text pointer-events-auto cursor-pointer">
             <DecryptedText
               text="HANIN'S"
               animateOn="inViewHover"
@@ -99,7 +99,7 @@ export default function Hero() {
           </h1>
 
           {/* Dynamic Typewriter: Portfolio / Collection / Selection */}
-          <div className="pt-3 sm:pt-5 md:pt-6 flex items-center">
+          <div className="pt-2 sm:pt-4 md:pt-6 flex items-center">
             <TypewriterTitle
               sequences={[
                 { text: "Portfolio", deleteAfter: true, pauseAfter: 1800 },
@@ -110,8 +110,8 @@ export default function Hero() {
               deleteSpeed={35}
               loopDelay={600}
               autoLoop={true}
-              className="font-mono text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-ink"
-              cursorClassName="bg-sage-dark w-[3px] sm:w-[4px] h-[0.9em]"
+              className="font-mono text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-ink"
+              cursorClassName="bg-sage-dark w-[2.5px] sm:w-[4px] h-[0.9em]"
             />
           </div>
         </div>
@@ -123,30 +123,30 @@ export default function Hero() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        className="relative z-20 w-full pt-8 sm:pt-10 border-t border-borderLine/60 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 sm:gap-10"
+        className="relative z-20 w-full pt-6 sm:pt-10 border-t border-borderLine/60 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 sm:gap-10"
       >
         {/* Supporting Identity & Bio */}
-        <div className="max-w-xl min-w-0 space-y-3.5">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="font-mono text-xs uppercase tracking-widest text-ink-muted">
+        <div className="max-w-xl min-w-0 space-y-2 sm:space-y-3.5">
+          <div className="flex flex-wrap items-center gap-x-2.5 sm:gap-x-3 gap-y-1">
+            <span className="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-ink-muted">
               IDENTITY /
             </span>
-            <span className="font-mono text-xs uppercase tracking-widest text-ink font-bold">
+            <span className="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-ink font-bold">
               {PERSONAL_INFO.fullName}
             </span>
           </div>
 
-          <p className="text-base sm:text-lg text-ink font-normal leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-ink font-normal leading-relaxed">
             {PERSONAL_INFO.bioShort}
           </p>
         </div>
 
         {/* Action Buttons & Scroll Affordance */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full lg:w-auto">
-          <div className="flex flex-col sm:flex-row items-stretch gap-3 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 w-full lg:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch gap-2.5 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={() => scrollTo('projects')}
-              className="flex-1 sm:flex-initial px-7 py-3.5 bg-ink text-surface font-mono text-xs uppercase tracking-widest hover:bg-ink/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+              className="flex-1 sm:flex-initial px-5 py-3 sm:px-7 sm:py-3.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-widest hover:bg-ink/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
             >
               <span>EXPLORE PROJECTS</span>
               <ArrowUpRight size={14} />
@@ -154,7 +154,7 @@ export default function Hero() {
 
             <button
               onClick={() => scrollTo('about')}
-              className="flex-1 sm:flex-initial px-7 py-3.5 border border-ink text-ink font-mono text-xs uppercase tracking-widest hover:bg-surface active:scale-[0.98] transition-all flex items-center justify-center"
+              className="flex-1 sm:flex-initial px-5 py-3 sm:px-7 sm:py-3.5 border border-ink text-ink font-mono text-[11px] sm:text-xs uppercase tracking-widest hover:bg-surface active:scale-[0.98] transition-all flex items-center justify-center"
             >
               <span>ABOUT ME</span>
             </button>

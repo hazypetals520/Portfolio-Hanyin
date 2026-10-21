@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ProjectItem } from '../../types';
-import { X, ExternalLink, Calendar } from 'lucide-react';
+import { X, ExternalLink, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { InteractiveHoverButton } from './interactive-hover-button';
 
@@ -78,7 +78,7 @@ export default function ProjectModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center px-14 sm:px-20 md:px-24 py-6 md:py-10 bg-ink/75 backdrop-blur-sm transition-opacity duration-300 select-none"
+      className="fixed inset-0 z-50 flex items-center justify-center px-2.5 sm:px-16 md:px-20 lg:px-24 py-3 sm:py-6 md:py-10 bg-ink/75 backdrop-blur-sm transition-opacity duration-300 select-none"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -86,9 +86,9 @@ export default function ProjectModal({
     >
       {/* Centered Modal Container with Hugging Navigation Arrows */}
       <div className="relative w-full max-w-4xl flex items-center justify-center">
-        {/* Previous Project Button — Floating cleanly outside the left edge of the modal */}
+        {/* Previous Project Button — Floating cleanly outside the left edge on tablet/desktop */}
         {onPrev && (
-          <div className="absolute -left-12 sm:-left-16 md:-left-20 top-1/2 -translate-y-1/2 z-50">
+          <div className="hidden sm:block absolute -left-14 sm:-left-16 md:-left-20 top-1/2 -translate-y-1/2 z-50">
             <InteractiveHoverButton
               direction="left"
               iconOnly
@@ -102,9 +102,9 @@ export default function ProjectModal({
           </div>
         )}
 
-        {/* Next Project Button — Floating cleanly outside the right edge of the modal */}
+        {/* Next Project Button — Floating cleanly outside the right edge on tablet/desktop */}
         {onNext && (
-          <div className="absolute -right-12 sm:-right-16 md:-right-20 top-1/2 -translate-y-1/2 z-50">
+          <div className="hidden sm:block absolute -right-14 sm:-right-16 md:-right-20 top-1/2 -translate-y-1/2 z-50">
             <InteractiveHoverButton
               direction="right"
               iconOnly
@@ -121,165 +121,191 @@ export default function ProjectModal({
         {/* Modal Dialog Card */}
         <div
           ref={modalRef}
-          className="relative w-full max-h-[90vh] overflow-y-auto bg-surface text-ink border border-borderLine shadow-2xl rounded-none md:rounded-sm transition-all select-text"
+          className="relative w-full max-h-[92vh] sm:max-h-[90vh] overflow-y-auto bg-surface text-ink border border-borderLine shadow-2xl rounded-none md:rounded-sm transition-all select-text"
           onClick={(e) => e.stopPropagation()}
         >
-        {/* Modal Header Bar */}
-        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-borderLine bg-surface/95 backdrop-blur px-6 py-4">
-          <div className="flex items-center gap-3">
-            <span className="inline-block w-2 h-2 rounded-full bg-sage"></span>
-            <span className="font-mono text-xs uppercase tracking-widest text-ink-secondary">
-              {project.categoryLabel} · {project.year}
-            </span>
-            {currentIndex !== undefined && totalCount !== undefined && (
-              <span className="font-mono text-[11px] text-ink-muted tracking-widest">
-                [0{currentIndex + 1} / 0{totalCount}]
+          {/* Modal Header Bar */}
+          <div className="sticky top-0 z-20 flex items-center justify-between border-b border-borderLine bg-surface/95 backdrop-blur px-3 sm:px-6 py-2.5 sm:py-4">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <span className="inline-block w-2 h-2 rounded-full bg-sage shrink-0"></span>
+              <span className="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-ink-secondary truncate">
+                {project.categoryLabel} · {project.year}
               </span>
-            )}
+              {currentIndex !== undefined && totalCount !== undefined && (
+                <span className="font-mono text-[10px] sm:text-[11px] text-ink-muted tracking-widest shrink-0">
+                  [0{currentIndex + 1} / 0{totalCount}]
+                </span>
+              )}
+            </div>
+
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              {/* Mobile Prev / Next Buttons */}
+              {onPrev && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onPrev();
+                  }}
+                  aria-label="Previous project"
+                  className="sm:hidden p-1.5 border border-borderLine hover:bg-canvas text-ink transition-colors"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+              )}
+              {onNext && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onNext();
+                  }}
+                  aria-label="Next project"
+                  className="sm:hidden p-1.5 border border-borderLine hover:bg-canvas text-ink transition-colors"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              )}
+
+              <button
+                ref={closeBtnRef}
+                onClick={onClose}
+                aria-label="Close project preview"
+                className="p-1.5 sm:p-2 border border-borderLine hover:bg-canvas hover:text-ink transition-colors rounded-none focus:outline-none focus:ring-2 focus:ring-ink"
+              >
+                <X size={16} className="sm:w-[18px] sm:h-[18px]" />
+              </button>
+            </div>
           </div>
-          <button
-            ref={closeBtnRef}
-            onClick={onClose}
-            aria-label="Close project preview"
-            className="p-2 border border-borderLine hover:bg-canvas hover:text-ink transition-colors rounded-none focus:outline-none focus:ring-2 focus:ring-ink"
+
+          {/* Modal Body with subtle animated crossfade on project change */}
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6 md:space-y-8"
           >
-            <X size={18} />
-          </button>
-        </div>
+            {/* Hero Banner / Preview — Clean and unobstructed */}
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-canvas border border-borderLine">
+              <img
+                src={project.thumbnail}
+                alt={project.title}
+                className="w-full h-full object-contain bg-[#111111]/5"
+              />
+            </div>
 
-        {/* Modal Body with subtle animated crossfade on project change */}
-        <motion.div
-          key={project.id}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="p-6 md:p-10 space-y-8"
-        >
-          {/* Hero Banner / Preview */}
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-canvas border border-borderLine">
-            <img
-              src={project.thumbnail}
-              alt={project.title}
-              className="w-full h-full object-contain bg-[#111111]/5"
-            />
-            <div className="absolute bottom-4 left-4 right-4 bg-ink/90 text-surface p-4 flex flex-wrap items-center justify-between gap-3">
-              <span className="font-mono text-xs uppercase tracking-widest text-sage">
-                CASE STUDY OVERVIEW
-              </span>
-              <div className="flex items-center gap-2">
-                <Calendar size={14} className="text-sage" />
-                <span className="font-mono text-xs">{project.year}</span>
+            {/* Title & Tagline */}
+            <div className="border-b border-borderLine pb-4 sm:pb-6">
+              <div className="flex items-center gap-2 text-ink-muted font-mono text-[10px] sm:text-xs mb-1.5 uppercase tracking-wider">
+                <Calendar size={12} className="text-sage" />
+                <span>{project.year}</span>
+                <span>·</span>
+                <span>{project.categoryLabel}</span>
+              </div>
+              <h2 id="modal-title" className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-ink">
+                {project.title}
+              </h2>
+              <p className="mt-1.5 text-xs sm:text-sm md:text-base text-ink-secondary font-light">
+                {project.tagline}
+              </p>
+            </div>
+
+            {/* Core Case Study Sections */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted">
+                  01 / THE PROBLEM
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base leading-relaxed text-ink/90">
+                  {project.problemStatement}
+                </p>
+              </div>
+
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted">
+                  02 / THE SOLUTION
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base leading-relaxed text-ink/90">
+                  {project.solution}
+                </p>
               </div>
             </div>
-          </div>
 
-          {/* Title & Tagline */}
-          <div className="border-b border-borderLine pb-6">
-            <h2 id="modal-title" className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-ink">
-              {project.title}
-            </h2>
-            <p className="mt-2 text-base md:text-lg text-ink-secondary font-light">
-              {project.tagline}
-            </p>
-          </div>
+            {/* Role & Deliverables */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 pt-4 border-t border-borderLine">
+              <div>
+                <h3 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-1.5 sm:mb-2">
+                  MY ROLE & CONTRIBUTION
+                </h3>
+                <p className="text-xs sm:text-sm md:text-base font-medium text-ink">
+                  {project.myRole}
+                </p>
+              </div>
 
-          {/* Core Case Study Sections */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h3 className="font-mono text-xs uppercase tracking-widest text-ink-muted">
-                01 / THE PROBLEM
-              </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-ink/90">
-                {project.problemStatement}
-              </p>
+              <div>
+                <h3 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-ink-muted mb-1.5 sm:mb-2">
+                  TOOLS & TECHNOLOGIES
+                </h3>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  {project.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-mono uppercase bg-canvas border border-borderLine text-ink"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="font-mono text-xs uppercase tracking-widest text-ink-muted">
-                02 / THE SOLUTION
-              </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-ink/90">
-                {project.solution}
-              </p>
-            </div>
-          </div>
-
-          {/* Role & Deliverables */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-borderLine">
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2">
-                MY ROLE & CONTRIBUTION
-              </h3>
-              <p className="text-sm sm:text-base font-medium text-ink">
-                {project.myRole}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-mono text-xs uppercase tracking-widest text-ink-muted mb-2">
-                TOOLS & TECHNOLOGIES
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="px-2.5 py-1 text-xs font-mono uppercase bg-canvas border border-borderLine text-ink"
+            {/* Action Links */}
+            <div className="pt-4 sm:pt-6 border-t border-borderLine flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                {project.projectUrl && project.projectUrl !== "#" && project.projectUrl !== project.figmaUrl && (
+                  <a
+                    href={project.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-ink/85 transition-colors"
                   >
-                    {tool}
-                  </span>
-                ))}
+                    <ExternalLink size={13} />
+                    <span>View Website ↗</span>
+                  </a>
+                )}
+                {project.figmaUrl && (
+                  <a
+                    href={project.figmaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-ink/85 transition-colors"
+                  >
+                    <FigmaIcon />
+                    <span>Open Figma ↗</span>
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2 border border-ink text-ink font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-canvas transition-colors"
+                  >
+                    <GithubIcon />
+                    <span>GitHub ↗</span>
+                  </a>
+                )}
               </div>
-            </div>
-          </div>
 
-          {/* Action Links */}
-          <div className="pt-6 border-t border-borderLine flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-3">
-              {project.projectUrl && project.projectUrl !== "#" && project.projectUrl !== project.figmaUrl && (
-                <a
-                  href={project.projectUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-ink text-surface font-mono text-xs uppercase tracking-widest hover:bg-ink/85 transition-colors"
-                >
-                  <ExternalLink size={14} />
-                  <span>View Website ↗</span>
-                </a>
-              )}
-              {project.figmaUrl && (
-                <a
-                  href={project.figmaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-ink text-surface font-mono text-xs uppercase tracking-widest hover:bg-ink/85 transition-colors"
-                >
-                  <FigmaIcon />
-                  <span>Open Figma Design ↗</span>
-                </a>
-              )}
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 border border-ink text-ink font-mono text-xs uppercase tracking-widest hover:bg-canvas transition-colors"
-                >
-                  <GithubIcon />
-                  <span>GitHub Repository ↗</span>
-                </a>
-              )}
+              <button
+                onClick={onClose}
+                className="px-4 py-2 sm:px-6 sm:py-2.5 bg-ink text-surface font-mono text-[11px] sm:text-xs uppercase tracking-wider hover:bg-ink/80 transition-colors"
+              >
+                Close Window
+              </button>
             </div>
-
-            <button
-              onClick={onClose}
-              className="px-6 py-2.5 bg-ink text-surface font-mono text-xs uppercase tracking-widest hover:bg-ink/80 transition-colors"
-            >
-              Close Window
-            </button>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }

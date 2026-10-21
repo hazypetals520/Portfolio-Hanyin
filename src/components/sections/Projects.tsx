@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PROJECTS_DATA } from '../../data/projectsData';
 import { ProjectItem } from '../../types';
 import ProjectModal from '../ui/ProjectModal';
@@ -8,6 +8,18 @@ import { motion } from 'motion/react';
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [folderWidth, setFolderWidth] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 380 ? 285 : 330
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setFolderWidth(window.innerWidth < 380 ? 285 : window.innerWidth < 420 ? 305 : 330);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const currentIndex = selectedProject
     ? PROJECTS_DATA.findIndex((p) => p.id === selectedProject.id)
@@ -44,15 +56,15 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative w-full py-28 lg:py-44 px-8 sm:px-14 lg:px-24 bg-canvas border-b border-borderLine">
-      <div className="max-w-7xl mx-auto space-y-20">
+    <section id="projects" className="relative w-full py-16 sm:py-28 lg:py-40 px-4 sm:px-14 lg:px-24 bg-canvas border-b border-borderLine">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-20">
         {/* Section Header with Enter/Exit Motion */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between border-b border-borderLine pb-8"
+          className="flex flex-col md:flex-row md:items-end justify-between border-b border-borderLine pb-6 sm:pb-8"
         >
           <div className="space-y-2">
             <span className="font-mono text-xs uppercase tracking-widest text-ink-muted block">
@@ -69,8 +81,8 @@ export default function Projects() {
         </motion.div>
 
         {/* Hero Showcase: 3D Interactive Glass Folders with Real Cover Artworks */}
-        <div className="py-12 sm:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 xl:gap-24 items-end justify-items-center">
+        <div className="py-6 sm:py-14 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 xl:gap-24 items-end justify-items-center">
             {/* Folder 1: UI/UX Projects with User's Uploaded Cover Pick */}
             <motion.div
               initial={{ opacity: 0, y: 36 }}
@@ -86,7 +98,7 @@ export default function Projects() {
                 seed={7}
                 action="more"
                 labelPlacement="bottom-left"
-                width={330}
+                width={folderWidth}
                 onFileSelect={handleFileSelect}
                 files={[
                   {
@@ -139,7 +151,7 @@ export default function Projects() {
                 art="none"
                 action="more"
                 labelPlacement="bottom-left"
-                width={330}
+                width={folderWidth}
                 onFileSelect={handleFileSelect}
                 files={[
                   {
@@ -189,7 +201,7 @@ export default function Projects() {
                 seed={19}
                 action="more"
                 labelPlacement="bottom-left"
-                width={330}
+                width={folderWidth}
                 onFileSelect={handleFileSelect}
                 files={[
                   {

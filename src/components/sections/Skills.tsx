@@ -43,8 +43,8 @@ export default function Skills() {
   const currentSkills = activeCategory === 'uiux' ? SKILLS_UIUX : SKILLS_PROGRAMMING;
 
   return (
-    <section id="skills" className="relative w-full py-28 lg:py-44 bg-canvas border-b border-borderLine overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 sm:px-14 lg:px-24 space-y-20">
+    <section id="skills" className="relative w-full py-16 sm:py-28 lg:py-40 bg-canvas border-b border-borderLine overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-14 lg:px-24 space-y-12 sm:space-y-20">
         {/* Section Heading with Enter/Exit Motion */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -67,23 +67,23 @@ export default function Skills() {
         </motion.div>
 
         {/* 12-Column Editorial Grid: Compact Skill Card (Left) + Refined Description (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 xl:gap-24 items-start">
           {/* Left Column: Category Switcher & Skill Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.15 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="lg:col-span-7 space-y-8"
+            className="lg:col-span-7 space-y-6 sm:space-y-8"
           >
             {/* Minimalist Switcher Tabs */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 role="tab"
                 aria-selected={activeCategory === 'uiux'}
                 aria-controls="skills-panel"
                 onClick={() => setActiveCategory('uiux')}
-                className={`px-5 py-2.5 font-mono text-xs uppercase tracking-widest border transition-all flex items-center gap-2 ${
+                className={`px-3.5 py-2 sm:px-5 sm:py-2.5 font-mono text-[11px] sm:text-xs uppercase tracking-widest border transition-all flex items-center gap-2 ${
                   activeCategory === 'uiux'
                     ? 'bg-ink text-surface border-ink font-bold shadow-sm'
                     : 'bg-surface text-ink-secondary border-borderLine hover:text-ink hover:border-ink'
@@ -98,7 +98,7 @@ export default function Skills() {
                 aria-selected={activeCategory === 'programming'}
                 aria-controls="skills-panel"
                 onClick={() => setActiveCategory('programming')}
-                className={`px-5 py-2.5 font-mono text-xs uppercase tracking-widest border transition-all flex items-center gap-2 ${
+                className={`px-3.5 py-2 sm:px-5 sm:py-2.5 font-mono text-[11px] sm:text-xs uppercase tracking-widest border transition-all flex items-center gap-2 ${
                   activeCategory === 'programming'
                     ? 'bg-ink text-surface border-ink font-bold shadow-sm'
                     : 'bg-surface text-ink-secondary border-borderLine hover:text-ink hover:border-ink'
@@ -113,7 +113,7 @@ export default function Skills() {
             <div
               id="skills-panel"
               role="tabpanel"
-              className="bg-surface border border-borderLine p-6 sm:p-10 space-y-7 shadow-sm"
+              className="bg-surface border border-borderLine p-4 sm:p-8 md:p-10 space-y-5 sm:space-y-7 shadow-sm"
             >
               <div className="flex items-center justify-between border-b border-borderLine pb-3">
                 <span className="font-mono text-[11px] uppercase tracking-widest text-ink-muted">
