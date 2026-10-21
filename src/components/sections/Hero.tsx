@@ -22,7 +22,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        className="absolute -top-10 sm:-top-14 lg:-top-16 xl:-top-14 left-[calc(50%-130px)] -translate-x-1/2 sm:left-[calc(50%-110px)] lg:left-auto lg:translate-x-0 lg:right-32 xl:right-48 2xl:right-60 pointer-events-auto z-30"
+        className="absolute -top-10 sm:-top-14 lg:-top-16 xl:-top-14 left-[calc(50%-115px)] -translate-x-1/2 sm:left-[calc(50%-95px)] lg:left-auto lg:translate-x-0 lg:right-[140px] xl:right-[204px] 2xl:right-[252px] pointer-events-auto z-30"
       >
         <div className="w-[224px] h-[458px] sm:w-[238px] sm:h-[484px] lg:w-[250px] lg:h-[650px] max-w-full drop-shadow-sm pointer-events-auto">
           <Lanyard
