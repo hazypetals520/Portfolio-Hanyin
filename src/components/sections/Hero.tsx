@@ -15,14 +15,14 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex flex-col justify-between overflow-x-clip px-4 sm:px-14 lg:px-24 pt-4 sm:pt-6 lg:pt-12 pb-8 sm:pb-14 lg:pb-20 bg-canvas border-b border-borderLine"
+      className="relative w-full min-h-screen flex flex-col justify-between overflow-x-clip px-4 sm:px-14 lg:px-28 xl:px-32 pt-4 sm:pt-6 lg:pt-16 xl:pt-20 pb-8 sm:pb-14 lg:pb-24 xl:pb-28 bg-canvas border-b border-borderLine"
     >
       {/* 3D Interactive Lanyard — Centered on mobile & tablet, right-aligned on desktop */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        className="absolute -top-10 sm:-top-14 lg:-top-16 xl:-top-14 left-[calc(50%-115px)] -translate-x-1/2 sm:left-[calc(50%-95px)] lg:left-auto lg:translate-x-0 lg:right-[140px] xl:right-[204px] 2xl:right-[252px] pointer-events-auto z-30"
+        className="absolute -top-10 sm:-top-14 lg:-top-16 xl:-top-14 left-[calc(50%-95px)] -translate-x-1/2 sm:left-[calc(50%-75px)] lg:left-auto lg:translate-x-0 lg:right-[140px] xl:right-[204px] 2xl:right-[252px] pointer-events-auto z-30"
       >
         <div className="w-[224px] h-[458px] sm:w-[238px] sm:h-[484px] lg:w-[250px] lg:h-[650px] max-w-full drop-shadow-sm pointer-events-auto">
           <Lanyard
