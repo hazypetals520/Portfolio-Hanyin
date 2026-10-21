@@ -7,7 +7,7 @@ export default function UtilityBar() {
       <div className="flex items-center gap-3">
         <span>PORTFOLIO / 2026</span>
         <span className="hidden sm:inline-block text-surface/40">|</span>
-        <span className="hidden sm:inline-block text-surface/70">SWISS INTERNATIONAL STYLE</span>
+        <span className="hidden sm:inline-block text-surface/70">THE CREATIVE SPACE</span>
       </div>
 
       <div className="flex items-center gap-2">
