@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting & Type Checking */
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "esModuleInterop": true,
+    "allowJs": true,
+
+    /* Path Aliases (shadcn/ui & Vite) */
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /* Environment & Types */
+    "types": ["vite/client", "node"]
+  },
+  "include": [
+    "src",
+    "vite.config.ts"
+  ]
+}

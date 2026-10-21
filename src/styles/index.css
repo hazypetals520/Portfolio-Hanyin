@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    background-color: #F1F0EC;
+    color: #111111;
+    overflow-x: hidden;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F1F0EC;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D5D4CF;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B7C8B0;
+  }
+}
+
+/* Hide OS default cursor on mouse devices so custom dot cursor is solely visible */
+@media (pointer: fine) {
+  html, body, a, button, input, textarea, select, [role="button"], * {
+    cursor: none !important;
+  }
+}
+
+/* Swiss typography utilities */
+.font-editorial {
+  letter-spacing: -0.03em;
+}
+
+.tracking-swiss {
+  letter-spacing: 0.18em;
+}
+
+/* Tech ticker animation */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker 25s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker {
+    animation: none;
+  }
+}
