@@ -22,9 +22,9 @@ export default function Hero() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-        className="absolute -top-6 sm:-top-10 lg:-top-16 xl:-top-14 left-[calc(50%-30px)] -translate-x-1/2 sm:left-[calc(50%-20px)] lg:left-auto lg:translate-x-0 lg:right-32 xl:right-48 2xl:right-60 pointer-events-auto z-30"
+        className="absolute -top-6 sm:-top-10 lg:-top-[84px] xl:-top-[76px] left-[calc(50%-80px)] -translate-x-1/2 sm:left-[calc(50%-60px)] lg:left-auto lg:translate-x-0 lg:right-32 xl:right-48 2xl:right-60 pointer-events-auto z-30"
       >
-        <div className="w-[165px] h-[340px] sm:w-[180px] sm:h-[370px] lg:w-[250px] lg:h-[650px] max-w-full drop-shadow-sm pointer-events-auto">
+        <div className="w-[255px] h-[520px] sm:w-[270px] sm:h-[550px] lg:w-[235px] lg:h-[615px] max-w-full drop-shadow-sm pointer-events-auto">
           <Lanyard
             frontImage="/images/hanin-portrait.png"
             orientation="portrait"
